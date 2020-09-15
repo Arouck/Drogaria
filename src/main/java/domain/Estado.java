@@ -25,5 +25,10 @@ public class Estado extends GenericDomain {
 	public void setNome(String nome) {
 		this.nome = nome;
 	}
+	
+	@Override
+	public String toString() {
+		return "Estado [sigla=" + sigla + ", nome=" + nome + "]";
+	}
 
 }

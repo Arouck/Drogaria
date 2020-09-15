@@ -56,4 +56,10 @@ public class ItemVenda extends GenericDomain {
 	public void setVenda(Venda venda) {
 		this.venda = venda;
 	}
+
+	@Override
+	public String toString() {
+		return "ItemVenda [quantidade=" + quantidade + ", valorParcial=" + valorParcial + ", produto=" + produto
+				+ ", venda=" + venda + "]";
+	}
 }

@@ -30,7 +30,7 @@ public class Pessoa extends GenericDomain {
 	@Column(nullable = false, length = 9)
 	private String cep;
 	
-	@Column(nullable = false, length = 100)
+	@Column(length = 100)
 	private String complemento;
 	
 	@Column(nullable = false, length = 20)
@@ -140,6 +140,13 @@ public class Pessoa extends GenericDomain {
 
 	public void setCidade(Cidade cidade) {
 		this.cidade = cidade;
+	}
+
+	@Override
+	public String toString() {
+		return "Pessoa [nome=" + nome + ", cpf=" + cpf + ", rg=" + rg + ", rua=" + rua + ", numero=" + numero
+				+ ", bairro=" + bairro + ", cep=" + cep + ", complemento=" + complemento + ", telefone=" + telefone
+				+ ", celular=" + celular + ", email=" + email + ", cidade=" + cidade + "]";
 	}
 
 }

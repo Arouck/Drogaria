@@ -48,4 +48,10 @@ public class Funcionario extends GenericDomain {
 		this.pessoa = pessoa;
 	}
 
+	@Override
+	public String toString() {
+		return "Funcionario [carteiraDeTrabalho=" + carteiraDeTrabalho + ", dataDeAdmissao=" + dataDeAdmissao
+				+ ", pessoa=" + pessoa + "]";
+	}
+
 }
