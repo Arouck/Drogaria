@@ -7,6 +7,16 @@
 		<persistence-unit name="DrogariaPU">
 		
 		<provider>org.hibernate.jpa.HibernatePersistenceProvider</provider>
+		<class>domain.Estado</class>
+		<class>domain.Cidade</class>
+		<class>domain.Cliente</class>
+		<class>domain.Fabricante</class>
+		<class>domain.Funcionario</class>
+		<class>domain.ItemVenda</class>
+		<class>domain.Pessoa</class>
+		<class>domain.Produto</class>
+		<class>domain.Usuario</class>
+		<class>domain.Venda</class>
 		
 		<properties>
 			<property name="hibernate.dialect"
