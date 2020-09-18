@@ -104,6 +104,24 @@ public class GenericDAO<Entidade> {
 		}
 	}
 	
+	public void merge(Entidade entidade) {
+		try {
+			if(!em.isOpen()) {
+				instanciarEm();
+			}
+			abrirSessao();
+			em.merge(entidade);
+			fazerCommmit();
+		} catch (RuntimeException ex) {
+			if (em.getTransaction() != null) {
+				fazerRollback();
+			}
+			throw ex;
+		} finally {
+			fecharSessao();
+		}
+	}
+	
 	public void abrirSessao() {
 		em.getTransaction().begin();
 	}
