@@ -24,6 +24,19 @@ public class CidadeBean implements Serializable {
 	private List<Estado> estados;
 	private EstadoDAO estadoDAO;
 	
+	public void salvar() {
+		try {
+			cidadeDAO.merge(cidade);
+			
+			instanciarCidade();
+			carregarListaCidades();
+			
+			Messages.addGlobalInfo("Salvo com sucesso.");
+		} catch (RuntimeException e) {
+			Messages.addGlobalError("Erro ao tentar salvar.");
+		}
+	}
+	
 	@PostConstruct
 	public void carregarListaCidades() {
 		try {
