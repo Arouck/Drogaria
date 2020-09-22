@@ -23,11 +23,11 @@ public class EstadoBean implements Serializable {
 
 	public void salvar() {
 		try {
-			EstadoDAO estadoDAO = new EstadoDAO();
 			estadoDAO.salvar(estado);
 			
 			instanciarEstado();
 			carregarLista();
+			
 			Messages.addGlobalInfo("Salvo com sucesso");
 		} catch (RuntimeException ex) {
 			Messages.addGlobalError("Ocorreu um erro ao tentar salvar o elemento.");
