@@ -23,7 +23,7 @@ public class EstadoBean implements Serializable {
 
 	public void salvar() {
 		try {
-			estadoDAO.salvar(estado);
+			estadoDAO.merge(estado);
 			
 			instanciarEstado();
 			carregarLista();
@@ -47,6 +47,10 @@ public class EstadoBean implements Serializable {
 			Messages.addGlobalError("Ocorreu um erro ao tentar excluir o elemento.");
 			e.printStackTrace();
 		}
+	}
+	
+	public void editar(ActionEvent evento) {
+		estado = (Estado) evento.getComponent().getAttributes().get("estadoSelecionado");
 	}
 	
 	@PostConstruct
