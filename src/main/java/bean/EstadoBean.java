@@ -6,6 +6,7 @@ import java.util.List;
 import javax.annotation.PostConstruct;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.ViewScoped;
+import javax.faces.event.ActionEvent;
 
 import org.omnifaces.util.Messages;
 
@@ -17,6 +18,7 @@ import domain.Estado;
 @ViewScoped
 public class EstadoBean implements Serializable {
 	private Estado estado;
+	private EstadoDAO estadoDAO;
 	private List<Estado> estados;
 
 	public void salvar() {
@@ -24,18 +26,35 @@ public class EstadoBean implements Serializable {
 			EstadoDAO estadoDAO = new EstadoDAO();
 			estadoDAO.salvar(estado);
 			
-			instanciar();
-			Messages.addGlobalInfo("Estado salvo com sucesso");
+			instanciarEstado();
+			carregarLista();
+			Messages.addGlobalInfo("Salvo com sucesso");
 		} catch (RuntimeException ex) {
-			Messages.addGlobalError("Ocorreu um erro ao tentar salvar o estado");
+			Messages.addGlobalError("Ocorreu um erro ao tentar salvar o elemento.");
 			ex.printStackTrace();
+		}
+	}
+	
+	public void excluir(ActionEvent evento) {
+		try {
+		estado = (Estado) evento.getComponent().getAttributes().get("estadoSelecionado");
+		estadoDAO.excluir(estado.getCodigo());
+		
+		carregarLista();
+		
+		Messages.addGlobalInfo("Excluído com sucesso.");
+		} catch (RuntimeException e) {
+			Messages.addGlobalError("Ocorreu um erro ao tentar excluir o elemento.");
+			e.printStackTrace();
 		}
 	}
 	
 	@PostConstruct
 	public void carregarLista() {
 		try {
-			EstadoDAO estadoDAO = new EstadoDAO();
+			if(estadoDAO == null) {
+				instanciarEstadoDAO();
+			}
 			estados = estadoDAO.listar();
 		} catch (RuntimeException ex) {
 			Messages.addGlobalError("Ocorreu um erro ao tentar listar os estados");
@@ -43,8 +62,12 @@ public class EstadoBean implements Serializable {
 		}
 	}
 	
-	public void instanciar() {
+	public void instanciarEstado() {
 		estado = new Estado();
+	}
+	
+	public void instanciarEstadoDAO() {
+		estadoDAO = new EstadoDAO();
 	}
 	
 	public List<Estado> getEstados() {
@@ -61,5 +84,13 @@ public class EstadoBean implements Serializable {
 	
 	public void setEstado(Estado estado) {
 		this.estado = estado;
+	}
+
+	public EstadoDAO getEstadoDAO() {
+		return estadoDAO;
+	}
+
+	public void setEstadoDAO(EstadoDAO estadoDAO) {
+		this.estadoDAO = estadoDAO;
 	}
 }
