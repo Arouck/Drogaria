@@ -34,6 +34,12 @@
 							message="Deseja excluir esse fabricante?" icon="ui-icon-alert" />
 						<f:attribute name="fabricanteSelecionado" value="#{fabricante}" />
 					</p:commandButton>
+					
+					<p:commandButton icon="ui-icon-pencil" update=":formCadastro:painel"
+						actionListener="#{fabricanteBean.editar}"
+						oncomplete="PF('dialogo').show();">
+						<f:attribute name="fabricanteSelecionado" value="#{fabricante}" />
+					</p:commandButton>
 				</p:column>
 			</p:dataTable>
 			
