@@ -23,7 +23,7 @@ public class FabricanteBean implements Serializable {
 	
 	public void salvar() {
 		try {
-			fabricanteDAO.salvar(fabricante);
+			fabricanteDAO.merge(fabricante);
 						
 			instanciarFabricante();
 			carregarLista();
@@ -47,6 +47,10 @@ public class FabricanteBean implements Serializable {
 			Messages.addGlobalError("Ocorreu um erro ao tentar excluir o elemento.");
 			e.printStackTrace();
 		}
+	}
+	
+	public void editar(ActionEvent evento) {
+		fabricante = (Fabricante) evento.getComponent().getAttributes().get("fabricanteSelecionado");
 	}
 	
 	@PostConstruct
