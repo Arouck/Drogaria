@@ -60,10 +60,4 @@ public class Venda extends GenericDomain {
 		this.funcionario = funcionario;
 	}
 
-	@Override
-	public String toString() {
-		return "Venda [horario=" + horario + ", precoTotal=" + precoTotal + ", cliente=" + cliente + ", funcionario="
-				+ funcionario + "]";
-	}
-
 }

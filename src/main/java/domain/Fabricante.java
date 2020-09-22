@@ -18,9 +18,4 @@ public class Fabricante extends GenericDomain {
 		this.nome = nome;
 	}
 
-	@Override
-	public String toString() {
-		return "Fabricante [nome=" + nome + "]";
-	}
-
 }

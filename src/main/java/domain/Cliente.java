@@ -47,9 +47,4 @@ public class Cliente extends GenericDomain {
 	public void setPessoa(Pessoa pessoa) {
 		this.pessoa = pessoa;
 	}
-
-	@Override
-	public String toString() {
-		return "Cliente [data=" + data + ", liberado=" + liberado + ", pessoa=" + pessoa + "]";
-	}
 }
