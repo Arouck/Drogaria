@@ -18,7 +18,10 @@
 				<f:facet name="header">
 					<p:commandButton value="Novo" oncomplete="PF('dialogo').show();"
 						actionListener="#{estadoBean.instanciarEstado}"
-						update=":formCadastro:painel" />
+						update=":formCadastro:painel">
+						<f:actionListener
+							type="org.omnifaces.eventlistener.ResetInputAjaxActionListener" />
+					</p:commandButton>
 				</f:facet>
 
 				<p:column headerText="Nome" sortBy="#{estado.nome}"
@@ -45,6 +48,7 @@
 						actionListener="#{estadoBean.editar}"
 						oncomplete="PF('dialogo').show();">
 						<f:attribute name="estadoSelecionado" value="#{estado}" />
+						<f:actionListener type="org.omnifaces.eventlistener.ResetInputAjaxActionListener" />
 					</p:commandButton>
 				</p:column>
 			</p:dataTable>
