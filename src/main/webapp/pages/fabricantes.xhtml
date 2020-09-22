@@ -11,14 +11,14 @@
 <h:body>
 	<p:growl id="mensagem" />
 
-	<h:form>
+	<h:form id="formListagem">
 		<p:panel header="Listagem dos fabricantes">
 			<p:dataTable emptyMessage="Nenhum registro encontrado."
 				paginator="true" value="#{fabricanteBean.fabricantes}"
-				var="fabricante" rows="5" >
+				var="fabricante" rows="5" id="tabela" >
 				<f:facet name="header">
 					<p:commandButton value="Novo" oncomplete="PF('dialogo').show();"
-						actionListener="#{fabricanteBean.instanciar}"
+						actionListener="#{fabricanteBean.instanciarFabricante}"
 						update=":formCadastro:painel" />
 				</f:facet>
 
@@ -27,9 +27,12 @@
 				</p:column>
 
 				<p:column headerText="Opções">
-					<p:commandButton icon="ui-icon-trash">
+					<p:commandButton icon="ui-icon-trash"
+						actionListener="#{fabricanteBean.excluir}"
+						update=":mensagem :formListagem:tabela">
 						<p:confirm header="Confirmação"
 							message="Deseja excluir esse fabricante?" icon="ui-icon-alert" />
+						<f:attribute name="fabricanteSelecionado" value="#{fabricante}" />
 					</p:commandButton>
 				</p:column>
 			</p:dataTable>
@@ -53,7 +56,7 @@
 
 			<p:panelGrid columns="2">
 				<p:commandButton value="Salvar" actionListener="#{fabricanteBean.salvar}"
-					update=":mensagem :formCadastro:painel" />
+					update=":mensagem :formCadastro:painel :formListagem:tabela" />
 				<p:commandButton value="Fechar" oncomplete="PF('dialogo').hide();" />
 			</p:panelGrid>
 
