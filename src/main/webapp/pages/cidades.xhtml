@@ -11,10 +11,11 @@
 <h:body>
 	<p:growl id="mensagem" />
 
-	<h:form>
+	<h:form id="formListagem">
 		<p:panel header="Listagem das cidades">
 			<p:dataTable emptyMessage="Nenhum registro encontrado."
-				paginator="true" value="#{cidadeBean.cidades}" var="cidade" rows="5">
+				paginator="true" value="#{cidadeBean.cidades}" var="cidade" rows="5"
+				id="tabela">
 				<f:facet name="header">
 					<p:commandButton value="Novo" oncomplete="PF('dialogo').show();"
 						actionListener="#{cidadeBean.instanciarCidade}"
@@ -51,12 +52,13 @@
 				<p:selectOneMenu filter="true" value="#{cidadeBean.cidade.estado}">
 					<f:selectItem noSelectionOption="true" itemLabel="Selecione um estado" />
 					<f:selectItems value="#{cidadeBean.estados}" var="estado"
-						itemValue="#{estado}" itemLabel="#{estado.nome}" />
+						itemValue="#{estado}" itemLabel="#{estado.nome} - #{estado.sigla}" />
 				</p:selectOneMenu>
 			</p:panelGrid>
 
 			<p:panelGrid columns="2">
-				<p:commandButton value="Salvar" />
+				<p:commandButton value="Salvar" actionListener="#{cidadeBean.salvar}"
+					update=":mensagem :formCadastro:painel :formListagem:tabela" />
 				<p:commandButton value="Fechar" oncomplete="PF('dialogo').hide();" />
 			</p:panelGrid>
 
