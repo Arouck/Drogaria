@@ -39,8 +39,9 @@
 							message="Deseja excluir esse estado?" icon="ui-icon-alert" />
 						<f:attribute name="estadoSelecionado" value="#{estado}" />
 					</p:commandButton>
-					
-					<p:commandButton icon="ui-icon-pencil" update=":formCadastro:painel"
+
+					<p:commandButton icon="ui-icon-pencil"
+						update=":formCadastro:painel"
 						actionListener="#{estadoBean.editar}"
 						oncomplete="PF('dialogo').show();">
 						<f:attribute name="estadoSelecionado" value="#{estado}" />
@@ -63,11 +64,13 @@
 			<p:panelGrid columns="2" id="painel">
 				<p:outputLabel value="Nome: " />
 				<p:inputText maxlength="50" size="30"
-					value="#{estadoBean.estado.nome}" />
+					value="#{estadoBean.estado.nome}" required="true"
+					requiredMessage="O campo 'Nome' é obrigatório." />
 
 				<p:outputLabel value="Sigla: " />
 				<p:inputText maxlength="2" size="10"
-					value="#{estadoBean.estado.sigla}" />
+					value="#{estadoBean.estado.sigla}" required="true"
+					requiredMessage="O campo 'Sigla' é obrigatório." />
 
 			</p:panelGrid>
 
